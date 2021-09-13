@@ -1,0 +1,143 @@
+﻿.find {
+    width: 200px;
+    height: 70px;
+    background-color: #54E346;
+    color: white;
+    border: 2px solid #29BB89;
+    font-size: 40px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 1px 3px 1px #333;
+}
+.stext {
+    float: left;
+    font-size: 40px;
+    color: maroon;
+}
+.Finder {
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.find:hover {
+    box-shadow: 0 2px 3px 1px #222;
+}
+
+#search {
+    width: 400px;
+    height: 30px;  
+}
+
+.closeBtn {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #983009;
+    background-color: orangered;
+    border-radius: 5px;
+    color: white;   
+    float:right;
+}
+
+#searchBar {
+    height: 100px;
+    border: 1px solid black;   
+    border-radius: 5px;
+    background-color: white;
+    min-width: 1110px;
+    box-sizing: border-box;
+    position: initial;
+}
+
+#searchBar > form {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 33px;
+}
+.searchBox {
+    min-width: 400px;
+    max-width: 400px;
+    height: 400px;
+    border: 1px solid black;
+    position: absolute;
+    right: 406px;  
+    top: 185px;
+    background-color: white;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+#fname {
+    padding-right: .2rem;
+}
+#lname {
+    padding-left: .2rem;
+}
+#view {
+    background-color: orange;
+    width: 70px;
+    height: 35px;
+    border-radius: 5px;
+    color: white;
+}
+#view > a {
+    text-decoration: none;
+}
+body {
+    background-color: #eee;
+}
+#upload{
+    border: 1px solid black;
+    padding: 40px;
+    background-color: white;
+    border-radius: 5px;
+}
+#writepost{
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.modal {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: black;
+    z-index: 100;
+    opacity: 0.8;
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.8;
+    min-height: 100%;
+}
+#divImage {
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    height: 550px;
+    width: 600px;
+    padding: 3px;
+    border: solid 1px black;
+}
+
+.send_message {
+    float: right !important;
+    box-sizing: border-box;
+}
+.chat-input {
+    position: fixed;
+    bottom: 80px;
+    right: 275px;
+}
+.chat-input > input {
+    min-width: 900px;
+    min-height: 40px;
+}

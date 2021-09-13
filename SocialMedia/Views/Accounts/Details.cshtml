@@ -1,0 +1,115 @@
+﻿@model SocialMedia.Models.Account
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Account Details</h1>
+<hr />
+<div id="user_whole">
+    <div class="user">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DOB)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DOB)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+        </dl> 
+    </div>
+    <div class="send_message">
+        <a asp-action="ChatApp" asp-route-id="@Model.Id"><button type="button" class="btn btn-primary">Send Message</button></a>
+    </div>
+</div>
+<br />
+<hr />
+<table class="col-md-12">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (Post post in ViewBag.Posts)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    <b>@post.post_txt</b> at @post.post_date<br />
+                    @post.post_like likes<br />
+                    @Html.ActionLink("Like", "LikeAccount", "Accounts", new { id = post.AccountID, pid = post.post_id })<hr />
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
+<br />
+<hr />
+<table>
+    <thead>
+        <tr>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ImageModel imageModel in ViewBag.Images)
+        {
+            <tr>
+                <td>
+                    <b>@imageModel.Title</b> at @imageModel.Date<br />
+                    <img src="@("~/Image/" + imageModel.ImageName)" asp-append-version="true" type="button" id="smallImage" onclick="LoadDiv(this.src)" width="250px" height="250px" /><br />
+                    @imageModel.ImageName<hr />
+                    <div id="divBackground" class="modal"></div>
+                    <div id="divImage">
+                        <table>
+                            <tr>
+                                <td valign="middle" align="center">
+                                    <img id="imgLoader" alt="" src="~/img/loading3.gif" />
+                                    <img id="imgFull" alt="" src="" style="display: none; height: 500px; width: 590px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="bottom">
+                                    <input id="btnClose" type="button" value="close" onclick="HideDiv()" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index" class="text-white bg-success" style="padding:0 5px 0 5px; border-radius:5px; text-decoration-line:none;">Go Back To Your Account</a>
+</div>

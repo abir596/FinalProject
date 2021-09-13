@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FriendConnector | HomePage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style1.css">
+</head>
+<body>
+    <div id="container">
+        <a href="Home">
+            <div id="navigation_logo">
+                <div id="message_icon">
+                    <img src="~/img/message.png">
+                </div>
+                <h1>FriendConnector</h1>
+            </div>
+        </a>
+        <div id="options">
+            <ul>
+                <li class="forum"><a href="Home/Forum">Forum</a></li>
+                <li class="about"><a href="Home/About">About</a></li>
+                <li class="terms"><a href="Home/Terms">Terms</a></li>
+                <li class="contact"><a href="Home/ContactUs">Contact Us</a></li>
+            </ul>
+        </div>
+        <div id="logger">
+            <ul>
+                <li><a class="login" href="~/Accounts/">Login</a></li>
+                <li><a class="signup" href="~/Accounts/Create">SignUp</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="main_container">
+        <div id="free_register">
+            <h4>CONNECT WITH YOUR FRIENDS FROM ALL OVER THE WORLD</h4>
+            <p>Send messages to your friends and family completely free of costs</p>
+            <p>Registration is absolutely free</p>
+            <h3><a href="~/Accounts/Create">GET STARTED FOR FREE</a></h3>
+        </div>
+        <a href="~/Accounts/Login"><p class="already">Already have an account? Login</p></a>
+        <div id="laptop_photo">
+            <img src="~/img/messaging.jpg">
+        </div>
+        <div id="descriptions">
+            <div id="specifications">
+                <p>Our platform is available across a wide variety of devices</p>
+                <p>You can use our platform on Computer, Mobiles and Tablets</p>
+                <p>Very convenient and easy to use</p>
+                <p>Connect with your friends from wherever you are</p>
+                <p>Send and receive messages for free</p>
+                <p>You can Join from both Home and Workplaces</p>
+            </div>
+            <div id="multiple_devices">
+                <img src="~/img/messaging3.jpg">
+            </div>
+        </div>
+    </div>
+    <div id="finisher">
+        <div id="support">
+            <img src="img/support.png">
+            <h1>24X7 Support</h1>
+            <p>If you find any bugs and issuses please feel free to reach us</p>
+            <p>Our customer support team will help to fix your issues
+        </div>
+        <div id="upload">
+            <img src="~/img/upload.jpg">
+            <h1>Upload for Free</h1>
+            <p>Here you can upload unlimited Photos and Videos</p>
+            <p>All your contents are private and only visible to your friends</p>
+        </div>
+        <div id="privacy">
+            <img src="~/img/privacy.jpg">
+            <h1>Privacy Protected</h1>
+            <p>Here we value your privacy</p>
+            <p>We do not allow any unauthorised access to your account</p>
+            <p>Rest assured that all your contents are safe and secured from unauthorised access</p>
+        </div>
+    </div>
+    <div id="ending"></div>
+</body>
+</html>

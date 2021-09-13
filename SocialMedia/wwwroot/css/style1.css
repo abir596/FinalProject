@@ -1,0 +1,413 @@
+
+	body {
+		line-height: 1.2;
+	}
+
+	#container {
+		background: #71C9CE;
+		overflow: hidden;
+		height: 144px;
+	}
+
+	#message_icon {
+		float: left;
+		margin-top: 9.5px;
+		margin-right: 5px;
+	}
+
+		#message_icon img {
+			width: 50px;
+			height: 40px;
+		}
+
+	#navigation_logo {
+		float: left;
+		margin-top: 40px;
+		margin-right: 150px;
+		margin-left: 30px;
+	}
+
+		#navigation_logo h1 {
+			font-size: 50px;
+			color: wheat;
+			font-weight: bold;
+			float: left;
+		}
+
+	#options {
+		width: 510px;
+		float: left;
+		overflow: hidden;
+		margin-top: 80px;
+		margin-bottom: 10px;
+	}
+
+		#options ul li {
+			float: left;
+		}
+
+	#logger {
+		float: left;
+		margin-top: 40px;
+		margin-left: 20px;
+		width: 300px;
+		overflow: hidden;
+	}
+
+		#logger ul li {
+			float: left;
+		}
+
+	#options ul li a {
+		text-decoration: none;
+		font-size: 20px;
+		background: green;
+		display: block;
+		margin-right: 15px;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		color: white;
+		transition: all 1s;
+		-webkit-transition: all 1s;
+		-moz-transition: all 1s;
+	}
+
+	#options ul li.forum a {
+		padding: 15px 27px;
+	}
+
+	#options ul li.about a {
+		padding: 15px 27px;
+	}
+
+	#options ul li.terms a {
+		padding: 15px 27px;
+	}
+
+	#options ul li.contact a {
+		padding: 15px 10px;
+	}
+
+	#options ul li a:hover {
+		background-color: #0F044C;
+		border: 1px solid white;
+	}
+
+	#options ul li a:active {
+		color: #787A91;
+	}
+
+	#logger ul li a {
+		text-decoration: none;
+		display: block;
+		color: white;
+		font-size: 30px;
+	}
+
+		#logger ul li a.login {
+			background: blue;
+			padding: 15px 30px;
+			border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			margin-right: 10px;
+			transition: all 1s;
+			-webkit-transition: all 1s;
+			-moz-transition: all 1s;
+		}
+
+			#logger ul li a.login:hover {
+				border: 1px solid white;
+			}
+
+			#logger ul li a.login:active {
+				color: black;
+			}
+
+		#logger ul li a.signup {
+			background: orange;
+			padding: 15px 20px;
+			border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			margin-left: 10px;
+			transition: all 1s;
+			-webkit-transition: all 1s;
+			-moz-transition: all 1s;
+		}
+
+			#logger ul li a.signup:hover {
+				background-color: #132C33;
+				border: 1px solid white;
+			}
+
+			#logger ul li a.signup:active {
+				color: red;
+			}
+
+	#main_container {
+		background: #E3FDFD;
+		overflow: hidden;
+		height: 900px;
+	}
+
+	#free_register {
+		float: left;
+		width: 600px;
+		margin: 40px;
+		margin-top: 70px;
+		margin-left: 120px;
+		font-family: 'Poppins','sans-serif';
+	}
+
+		#free_register h4 {
+			font-size: 45px;
+			font-family: 'Jost ExtraBold','sans-serif;';
+			font-weight: bold;
+			margin-bottom: 20px;
+		}
+
+		#free_register p {
+			margin-top: 10px;
+			text-align: center;
+			font-size: 18px;
+		}
+
+		#free_register h3 {
+			margin-top: 60px;
+			font-size: 20px;
+			text-align: center;
+		}
+
+			#free_register h3 a {
+				background: #10d596;
+				padding: 30px 50px;
+				border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				text-decoration: none;
+				color: white;
+				transition: all 1s;
+				-webkit-transition: all 1s;
+				-moz-transition: all 1s;
+			}
+
+				#free_register h3 a:hover {
+					background: #01937C;
+				}
+
+				#free_register h3 a:active {
+					color: red;
+				}
+
+	p.already {
+		position: relative;
+		top: 425px;
+		right: 440px;
+	}
+
+	#laptop_photo {
+		float: left;
+		margin-top: 70px;
+		padding-bottom: 50px;
+	}
+
+		#laptop_photo img {
+			width: 600px;
+		}
+
+	#descriptions {
+		width: 1500px;
+		position: relative;
+		top: 60px;
+		left: 30px;
+	}
+
+	#specifications {
+		clear: both;
+		float: none;
+		float: left;
+		margin-left: 95px;
+		margin-right: 20px;
+		font-size: 25px;
+	}
+
+		#specifications p {
+			margin-top: 10px;
+		}
+
+	#multiple_devices {
+		float: left;
+		margin-left: 10px;
+	}
+
+		#multiple_devices img {
+			width: 600px;
+		}
+
+	#finisher {
+		width: 1000px;
+		position: relative;
+		top: 50px;
+		left: 330px;
+		font-family: 'Poppins','sans-serif';
+	}
+
+	#support {
+		float: left;
+		text-align: center;
+		width: 230px;
+		margin-right: 100px;
+	}
+
+		#support img {
+			margin-bottom: 18px;
+			width: 225px;
+			height: 225px;
+		}
+
+	#upload {
+		float: left;
+		text-align: center;
+		width: 230px;
+		margin-right: 100px;
+	}
+
+	#privacy {
+		float: left;
+		text-align: center;
+		width: 230px;
+	}
+
+	#upload img {
+		width: 225px;
+		height: 225px;
+		margin-bottom: 18px;
+	}
+
+	#privacy img {
+		width: 225px;
+		height: 225px;
+		margin-bottom: 18px;
+	}
+
+	#finisher h1 {
+		font-size: 22px;
+		font-weight: bold;
+		margin-bottom: 15px;
+	}
+
+	#support img {
+		transition: all 1s;
+		-webkit-transition: all 1s;
+		-moz-transition: all 1s;
+	}
+
+	#support:hover img {
+		transform: scale(1.2);
+	}
+
+	#privacy img {
+		transition: all 1s;
+		-webkit-transition: all 1s;
+		-moz-transition: all 1s;
+	}
+
+	#privacy:hover img {
+		transform: scale(1.2);
+	}
+
+	#upload img {
+		transition: all 1s;
+		-webkit-transition: all 1s;
+		-moz-transition: all 1s;
+	}
+
+	#upload:hover img {
+		transform: scale(1.2);
+	}
+
+	#ending {
+		width: 1519.2px;
+		height: 120px;
+		background: #232323;
+		position: relative;
+		top: 500px;
+	}
+
+	#form {
+		border: 1px solid black;
+		text-align: center;
+		width: 500px;
+		height: 100px;
+		position: relative;
+		top: 170px;
+		left: 500px;
+		border-radius: 5px;
+		padding-top: 30px;
+		padding-bottom: 80px;
+		font-size: 20px;
+		background: #F9F9F9;
+	}
+
+		#form input {
+			font-size: 20px;
+		}
+
+		#form form label.email {
+			margin-left: 28px;
+		}
+
+		#form form input.login {
+			padding: 10px 25px 10px 25px;
+			border-radius: 5px;
+		}
+
+	#prompt {
+		text-align: center;
+		position: relative;
+		top: 160px;
+		font-size: 22px;
+	}
+
+	#background {
+		background: #E3FDFD;
+		height: 700px;
+		color: blue;
+		overflow: hidden;
+	}
+
+	#form2 {
+		border: 1px solid black;
+		text-align: center;
+		width: 600px;
+		border-radius: 5px;
+		font-size: 20px;
+		margin: auto;
+		padding: 30px 0px 30px 0px;
+		background: #F9F9F9;
+	}
+
+		#form2 input {
+			font-size: 20px;
+		}
+
+		#form2 form input.signup {
+			padding: 10px 25px 10px 25px;
+			border-radius: 5px;
+		}
+
+	#prompt2 {
+		text-align: center;
+		font-size: 22px;
+		margin-top: 30px;
+	}
+
+	#positioner {
+		text-align: center;
+	}
+
+	#headerNavbarColor {
+		background: black;
+	}

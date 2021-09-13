@@ -1,0 +1,215 @@
+﻿@model IEnumerable<SocialMedia.Models.Account>
+@using SocialMedia.Data
+@inject SocialMediaContext _context;
+@{
+    Layout = "_Layout";
+    ViewBag.Context = _context;
+    var data = ViewBag.Context as SocialMediaContext;
+    var Email = User.Claims.Where(x => x.Type == "Email").Select(e => e.Value).SingleOrDefault();
+    var id = data.Account.Where(x => x.Email == Email).FirstOrDefault().Id;
+}
+@{
+    ViewData["Title"] = "Index";
+}
+<h2><i>@TempData["FullName"]</i></h2>
+<a class="text-white bg-danger" asp-action="PersonalInformation" asp-route-id="@id" style="padding:0 5px 0 5px; border-radius:5px; text-decoration-line:none;">Preview Your Personal Information</a>
+<br /><br />
+<div class="Finder" id="FinderElement">
+    <div class="stext"><b>Search People:</b>&nbsp;</div>
+    <button id="findButton" class="find"><b>Find</b></button>
+</div>
+
+<div id="searchBar" style="display:none;">
+    <button class="closeBtn" id="closeBtn" style="display:none;">X</button>
+    @using (Html.BeginForm("Index", "Accounts", FormMethod.Get))
+    {
+        <b>Search Option:&nbsp;&nbsp;&nbsp; </b>@Html.RadioButton("option", "FirstName") <text>FirstName&nbsp;&nbsp;&nbsp;&nbsp;</text> @Html.RadioButton("option", "LastName") <text>LastName&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        @Html.RadioButton("option", "Email") <text>Email&nbsp;&nbsp;&nbsp;&nbsp;</text> @Html.TextBox("search")
+        <input type="submit"
+               name="submit"
+               value="Search" id="searchButton" />
+    }
+</div>
+<br />
+<div id="searchItems" class="searchBox" style="display:none;">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="3">Records Not Found</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in Model)
+                {
+                    @if (Model.Count() == 1 && item.Email == (User.Claims.Where(x => x.Type == "Email").Select(e => e.Value).SingleOrDefault()))
+                    {
+                        <tr>
+                            <td colspan="3">Records Not Found</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td id="fname">
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td id="lname">
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.Id"><button id="view">View</button></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="col-md-12" style="border: 1px solid black; padding: 40px; border-radius: 5px; background-color: #F9F9F9;">
+        @using (Html.BeginForm("WriteSomething", "Accounts", FormMethod.Post))
+        {
+            @Html.TextArea("post_txt", null, new { @class = "form-control", @placeholder = "Write Something Here..." });
+            @Html.HiddenFor(model => model.FirstOrDefault().Id)
+            <br />
+            <button type="submit" name="submit" class="btn btn-primary btn-lg">Post Something</button>
+        }
+    </div>
+</div>
+<br />
+<hr />
+<table class="col-md-12">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (Post post in ViewBag.Posts)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    <b>@post.post_txt</b> at @post.post_date<br />
+                    @post.post_like likes<br />
+                    @Html.ActionLink("Like", "Like", "Accounts", new { id = post.post_id })<hr />
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success btn-sm"><a style="color:#fff; text-decoration:none; padding-left: 9px; padding-right:9px;" asp-action="EditPost" asp-route-id="@post.post_id">Edit</a></button> |
+                    <button type="button" class="btn btn-warning btn-sm"><a style="color: #212529; text-decoration: none;" asp-action="PostDetails" asp-route-id="@post.post_id">Details</a></button> |
+                    <button type="button" class="btn btn-danger btn-sm"><a style="color: #fff; text-decoration: none;" asp-action="DeletePost" asp-route-id="@post.post_id">Delete</a></button>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
+<div class="row">
+    <div class="col-md-12" id="upload">
+        @using (Html.BeginForm("CreateImage", "Accounts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <h2>Upload Images</h2>
+            <hr />
+            @Html.HiddenFor(model => model.FirstOrDefault().Id)
+            <input type="text" name="Title" placeholder="Enter Image Title" />
+            <br /><br />
+            <input type="file" name="ImageFile" class="form-control" /><br />
+            <input type="submit" name="submit" value="Upload" class="btn btn-primary" />
+        }
+    </div>
+</div>
+<br />
+<hr />
+<table>
+    <thead>
+        <tr>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ImageModel imageModel in ViewBag.Images)
+        {
+            <tr>
+                <td>
+                    <b>@imageModel.Title</b> at @imageModel.Date<br />
+                    <img src="@("~/Image/" + imageModel.ImageName)" asp-append-version="true" type="button" id="smallImage" onclick="LoadDiv(this.src)" width="250px" height="250px" /><br />
+                    @imageModel.ImageName<hr />
+                    <div id="divBackground" class="modal"></div>
+                    <div id="divImage">
+                        <table>
+                            <tr>
+                                <td valign="middle" align="center">
+                                    <img id="imgLoader" alt="" src="~/img/loading3.gif" />
+                                    <img id="imgFull" alt="" src="" style="display: none; height: 500px; width: 590px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="bottom">
+                                    <input id="btnClose" type="button" value="close" onclick="HideDiv()" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success btn-sm"><a style="color:#fff; text-decoration:none; padding-left: 9px; padding-right:9px;" asp-action="EditImage" asp-route-id="@imageModel.ImageId">Edit</a></button> |
+                    <button type="button" class="btn btn-warning btn-sm"><a style="color: #212529; text-decoration: none;" asp-action="ImageDetails" asp-route-id="@imageModel.ImageId">Details</a></button> |
+                    <button type="button" class="btn btn-danger btn-sm"><a style="color: #fff; text-decoration: none;" asp-action="DeleteImage" asp-route-id="@imageModel.ImageId">Delete</a></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-md-12" id="upload">
+        @using (Html.BeginForm("UploadVideo", "Accounts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <h2>Upload Videos</h2>
+            <hr />
+
+            <input type="text" name="Title" placeholder="Enter Video Title" />
+            <br /><br />
+            <input type="file" name="VideoFile" class="form-control" /><br />
+            <input type="submit" name="submit" value="Upload" class="btn btn-primary" />
+        }
+    </div>
+</div>
+<br />
+<hr />
+<table>
+    <thead>
+        <tr>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (VideoFiles videoFiles in ViewBag.Videos)
+        {
+            <tr>
+                <td>
+                    <b>@videoFiles.Title</b> at @videoFiles.Date<br />
+                    <video src="@Url.Content("~/Video/" + videoFiles.FileName)" width="500" height="400" preload controls loop>
+                    </video><br />
+                    @videoFiles.FileName<hr />
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success btn-sm"><a style="color:#fff; text-decoration:none; padding-left: 9px; padding-right:9px;" asp-action="EditVideo" asp-route-id="@videoFiles.Id">Edit</a></button> |
+                    <button type="button" class="btn btn-warning btn-sm"><a style="color: #212529; text-decoration: none;" asp-action="VideoDetails" asp-route-id="@videoFiles.Id">Details</a></button> |
+                    <button type="button" class="btn btn-danger btn-sm"><a style="color: #fff; text-decoration: none;" asp-action="DeleteVideo" asp-route-id="@videoFiles.Id">Delete</a></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

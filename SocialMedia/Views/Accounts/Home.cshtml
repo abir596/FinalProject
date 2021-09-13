@@ -1,0 +1,103 @@
+﻿@model IEnumerable<SocialMedia.Models.Account>
+@using SocialMedia.Data
+@inject SocialMediaContext _context;
+@{ 
+    Layout = "_Layout";
+    ViewBag.Context = _context;
+    var data = ViewBag.Context as SocialMediaContext;
+}
+<table class="col-md-12">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (Post post in ViewBag.Posts)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    <h4>
+                        @data.Account.Where(x => x.Id == post.AccountID).FirstOrDefault().FirstName
+                                        @data.Account.Where(x => x.Id == post.AccountID).FirstOrDefault().LastName
+                                    </h4><br />
+                    <b>@post.post_txt</b> at @post.post_date<br />
+                    @post.post_like likes<br />
+                    @Html.ActionLink("Like", "Home", "Accounts", new { id = post.AccountID, pid = post.post_id })<hr />
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
+<br />
+<hr />
+<table>
+    <thead>
+        <tr>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ImageModel imageModel in ViewBag.Images)
+        {
+            <tr>
+                <td>
+                    <h4>
+                        @data.Account.Where(x => x.Id == imageModel.AccountID).FirstOrDefault().FirstName
+                        @data.Account.Where(x => x.Id == imageModel.AccountID).FirstOrDefault().LastName
+                    </h4><br />
+                    <b>@imageModel.Title</b> at @imageModel.Date<br />
+                    <img src="@("~/Image/" + imageModel.ImageName)" asp-append-version="true" type="button" id="smallImage" onclick="LoadDiv(this.src)" width="250px" height="250px" /><br />
+                    @imageModel.ImageName<hr />
+                    <div id="divBackground" class="modal"></div>
+                    <div id="divImage">
+                        <table>
+                            <tr>
+                                <td valign="middle" align="center">
+                                    <img id="imgLoader" alt="" src="~/img/loading3.gif" />
+                                    <img id="imgFull" alt="" src="" style="display: none; height: 500px; width: 590px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="bottom">
+                                    <input id="btnClose" type="button" value="close" onclick="HideDiv()" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br /><hr/>
+      <table>
+          <thead>
+              <tr>
+                  <th>
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              @foreach (VideoFiles videoFiles in ViewBag.Videos)
+              {
+                  <tr>
+                      <td>
+                          <h4>
+                              @data.Account.Where(x => x.Id == videoFiles.AccountID).FirstOrDefault().FirstName
+                              @data.Account.Where(x => x.Id == videoFiles.AccountID).FirstOrDefault().LastName
+                          </h4><br />
+                          <b>@videoFiles.Title</b> at @videoFiles.Date<br />
+                          <video src="@Url.Content("~/Video/" + videoFiles.FileName)" width="500" height="400" preload controls loop>
+                          </video><br />
+                          @videoFiles.FileName<hr />
+                      </td>
+                  </tr>
+              }
+          </tbody>
+      </table>
+<br /><hr />
+<div>
+    <a asp-action="Index">Go Back To Your Account</a>
+</div>
